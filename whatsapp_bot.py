@@ -3,7 +3,7 @@
 """
 Created on Sun Oct  4 10:40:05 2020
 
-@author: giacomosaracchi
+@author: GiacomoSaracchi
 """
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -12,33 +12,14 @@ from selenium.webdriver.common.action_chains import ActionChains
 import time
 import os
 
-# INSTRUCTIONS FOR USE
-
-# Call MessageSpammer
-# Use go_to_chat to access any chat
-# Send one or multiple messages
-# Quit chrome using done
-
-# First class 'argument' (_3FRCZ in my case) is not the same across all phones
-# Go on your whatsapp web page and inspect the message input box or the contact
-# search box to find your own code
-# This is relevant across all xpaths
-
-# contact, message, driver_path and class_code are strings
-# num_times is integer
-# interval can be integer or float
-
-# To print out your details stored in the class generator use 
-    # print(MessageSpammer.__doc__)
-
 class MessageSpammer:
     
-    ''' Spam people on Whatsapp. Save your details below
+    ''' 
+Spam people on Whatsapp. Save your details below or incorporate them in the class on your own copy of this file
     
 My details:
-driver_path = "/Users/giacomosaracchi/opt/anaconda3/pkgs/chromedriver"
-personal_class_code = "_3FRCZ"
-noot-noot mp3 = "/Users/giacomosaracchi/Documents/Coding/Python/Projects/Bots/WhatsappBot/noot-noot.mp3"
+driver_path = "my_path"
+personal_class_code = "my_class_code"
     '''
 
     def __init__(self, driver_path, personal_class_code):
@@ -83,6 +64,7 @@ noot-noot mp3 = "/Users/giacomosaracchi/Documents/Coding/Python/Projects/Bots/Wh
             os.system(f"afplay {mp3_path}")
         decision = input("Send? [y/n]")
         if decision == "y":
+            # Slow. Adds a couple of seconds to voice messages. Needs improvement
             ActionChains(self.driver).move_to_element(send_audio).click().perform()
         else:
             ActionChains(self.driver).move_to_element(stop_audio).click().perform()
@@ -94,7 +76,7 @@ noot-noot mp3 = "/Users/giacomosaracchi/Documents/Coding/Python/Projects/Bots/Wh
                 self.send_message(message)
                 time.sleep(interval)
         else:
-            raise Exception("Too many iterations. Whatsapp will block your number")
+            raise Exception("Too many iterations. Whatsapp may block your number")
             
     def close(self):
         self.driver.quit()
