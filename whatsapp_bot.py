@@ -21,7 +21,8 @@ My details:
 driver_path = "my_path"
 personal_class_code = "my_class_code"
     '''
-
+    
+    # Initialize MessageSpammer and launch Chrome instance. Validate QR code before Return 
     def __init__(self, driver_path, personal_class_code):
         self.class_code = personal_class_code
         self.max_iter = 10
@@ -50,7 +51,7 @@ personal_class_code = "my_class_code"
             driver.find_element_by_xpath(msg_box_xpath))
         input_box.send_keys(message + Keys.RETURN)
     
-    # Send a single audio message to a chat
+    # UNDER CONSTRUCTION - Send a single audio message to a chat
     def send_audio(self, mp3_path=None):
         start_recording = WebDriverWait(self.driver, 10).until(lambda driver: 
                 driver.find_element_by_xpath("//button[@class='_2r1fJ']"))
